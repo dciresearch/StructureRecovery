@@ -33,7 +33,7 @@ def index():
 @app.post("/get_paragraphs")
 def break_into_paragraphs(input: RecoverRequest):
     return RecoverResponse(
-        paragraphs=par_model.breakdown(input.doc)
+        paragraphs=par_model.breakdown(input.text)
     )
 
 
