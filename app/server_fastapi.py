@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, Request
 from pydantic import BaseModel
 from src.punctuazier import Punctuazier
 from src.paragraphizer import Paragraphizer
@@ -26,8 +26,9 @@ def startup_event():
 
 
 @app.get("/")
-def index():
-    return {"text": f"Text Structure Recovery: check {app.docs_url} for debug interface and functions"}
+def index(request: Request):
+    url = request.url
+    return {"text": f"Text Structure Recovery: check {url}{app.docs_url[1:]} for debug interface and functions"}
 
 
 @app.post("/get_paragraphs")
